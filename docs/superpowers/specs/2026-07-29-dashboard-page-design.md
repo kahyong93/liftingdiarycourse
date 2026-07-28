@@ -33,19 +33,26 @@ logged workouts for a selectable date, defaulting to today.
 
 ## Components
 
-- `components/date-picker.tsx` (client component): shadcn `Calendar` +
-  `Popover` + `Button`. Shows the currently selected date formatted; opens a
-  calendar popover; on select, pushes the new `?date=` URL.
-- `components/workout-card.tsx`: renders one workout — name (or fallback
-  label) and start time as a header, then each exercise with its sets
-  (`reps x weight unit`).
-- Empty state: if no workouts are found for the date, show a simple
-  "No workouts logged on this date" message.
+Per `docs/ui.md`: only shadcn/ui components are used; no custom components
+(including thin wrappers) are created. All markup lives directly in the
+route's files.
+
+- `app/dashboard/page.tsx` (server component): reads `searchParams.date`,
+  runs the Drizzle query, and renders the results inline using shadcn `Card`
+  (or similar) primitives — one card per workout, each listing its exercises
+  and sets directly in JSX. Renders the empty state
+  ("No workouts logged on this date") inline when no workouts are found.
+- `app/dashboard/date-picker-client.tsx` (`"use client"`, route-local file,
+  not under `components/`): the interactive date-selection piece, built
+  directly from shadcn `Calendar` + `Popover` + `Button` primitives with no
+  wrapping abstraction beyond what's needed to hold the `"use client"`
+  boundary. Shows the currently selected date; on select, pushes the new
+  `?date=` URL via `useRouter`.
 
 ## Setup
 
-- Install shadcn `calendar` and `popover` components (only `button` exists
-  in `components/ui` currently).
+- Install shadcn `calendar`, `popover`, and `card` components (only `button`
+  exists in `components/ui` currently).
 
 ## Error handling
 
