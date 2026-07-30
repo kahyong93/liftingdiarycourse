@@ -84,6 +84,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -127,4 +128,70 @@
   html {
     @apply font-sans;
   }
+}
+
+/*
+ * Theme Clerk's built-in components (SignIn/SignUp/UserButton) to match the
+ * app's dark palette. Clerk's `appearance` prop is typed against its own
+ * Theme/Appearance/Variables types, which have proven brittle to hand-write
+ * against across Clerk versions (see issue #8) and broke the production
+ * build twice. Targeting Clerk's stable `cl-*` class names in plain CSS
+ * avoids depending on those types altogether.
+ */
+.dark .cl-rootBox,
+.dark .cl-card,
+.dark .cl-modalContent,
+.dark .cl-userButtonPopoverCard {
+  background-color: var(--card);
+  color: var(--foreground);
+}
+
+.dark .cl-modalBackdrop {
+  background-color: oklch(0 0 0 / 60%);
+}
+
+.dark .cl-headerTitle,
+.dark .cl-headerSubtitle,
+.dark .cl-socialButtonsBlockButtonText,
+.dark .cl-formFieldLabel,
+.dark .cl-footerActionText,
+.dark .cl-identityPreviewText,
+.dark .cl-userPreviewTextContainer,
+.dark .cl-userButtonPopoverActionButtonText,
+.dark .cl-userButtonPopoverFooter {
+  color: var(--foreground);
+}
+
+.dark .cl-dividerText,
+.dark .cl-footerActionText,
+.dark .cl-identityPreviewEditButtonIcon {
+  color: var(--muted-foreground);
+}
+
+.dark .cl-socialButtonsBlockButton,
+.dark .cl-formFieldInput,
+.dark .cl-userButtonPopoverActionButton,
+.dark .cl-otpCodeFieldInput {
+  background-color: var(--input);
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.dark .cl-dividerLine,
+.dark .cl-userButtonPopoverActionButton__signOut {
+  background-color: var(--border);
+}
+
+.dark .cl-formButtonPrimary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.dark .cl-footerActionLink,
+.dark .cl-identityPreviewEditButton {
+  color: var(--primary);
+}
+
+.dark .cl-internal-icon {
+  color: var(--foreground);
 }
