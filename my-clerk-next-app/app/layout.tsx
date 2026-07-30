@@ -26,10 +26,25 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <ClerkProvider>
+        <ClerkProvider
+          appearance={{
+            variables: {
+              colorBackground: "oklch(0.145 0 0)",
+              colorInputBackground: "oklch(0.205 0 0)",
+              colorInputText: "oklch(0.985 0 0)",
+              colorText: "oklch(0.985 0 0)",
+              colorTextSecondary: "oklch(0.708 0 0)",
+              colorPrimary: "oklch(0.922 0 0)",
+              colorNeutral: "oklch(0.985 0 0)",
+              colorDanger: "oklch(0.704 0.191 22.216)",
+              colorBorder: "oklch(1 0 0 / 10%)",
+              borderRadius: "0.625rem",
+            },
+          }}
+        >
           <header className="flex h-16 items-center justify-end gap-4 border-b px-4">
             <Show when="signed-out">
               <SignInButton mode="modal" />
