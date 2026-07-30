@@ -1,0 +1,6 @@
+{
+  "framework": "nextjs",
+  "installCommand": "cd my-clerk-next-app && npm install",
+  "buildCommand": "cd my-clerk-next-app && npm run build",
+  "outputDirectory": "my-clerk-next-app/.next"
+}
