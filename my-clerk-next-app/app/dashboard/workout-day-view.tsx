@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 
@@ -116,34 +117,40 @@ export function WorkoutDayView({
           </Card>
         ) : (
           workoutsForDate.map((workout) => (
-            <Card key={workout.id}>
-              <CardHeader>
-                <CardTitle>{workout.name ?? "Workout"}</CardTitle>
-                <CardDescription>
-                  {formatUtcTime(workout.startedAt)}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-4">
-                {workout.exercises.map((workoutExercise) => (
-                  <div
-                    key={workoutExercise.id}
-                    className="flex flex-col gap-1"
-                  >
-                    <p className="font-medium">
-                      {workoutExercise.exercise?.name}
-                    </p>
-                    <ul className="flex flex-col gap-0.5 text-sm text-muted-foreground">
-                      {workoutExercise.sets.map((set) => (
-                        <li key={set.id}>
-                          Set {set.setNumber}: {set.reps} reps &times;{" "}
-                          {set.weight} {set.weightUnit}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
+            <Link
+              key={workout.id}
+              href={`/dashboard/workout/${workout.id}`}
+              className="block rounded-xl transition-colors hover:bg-muted/50"
+            >
+              <Card>
+                <CardHeader>
+                  <CardTitle>{workout.name ?? "Workout"}</CardTitle>
+                  <CardDescription>
+                    {formatUtcTime(workout.startedAt)}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-4">
+                  {workout.exercises.map((workoutExercise) => (
+                    <div
+                      key={workoutExercise.id}
+                      className="flex flex-col gap-1"
+                    >
+                      <p className="font-medium">
+                        {workoutExercise.exercise?.name}
+                      </p>
+                      <ul className="flex flex-col gap-0.5 text-sm text-muted-foreground">
+                        {workoutExercise.sets.map((set) => (
+                          <li key={set.id}>
+                            Set {set.setNumber}: {set.reps} reps &times;{" "}
+                            {set.weight} {set.weightUnit}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </Link>
           ))
         )}
       </div>
