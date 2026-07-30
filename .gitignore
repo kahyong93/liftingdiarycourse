@@ -30,5 +30,9 @@ Thumbs.db
 # typescript
 *.tsbuildinfo
 
-# claude code local state
-.claude/
+# claude code: ignore local state, but share team config
+.claude/*
+!.claude/settings.json
+!.claude/agents/
+!.claude/hooks/
+.claude/settings.local.json
