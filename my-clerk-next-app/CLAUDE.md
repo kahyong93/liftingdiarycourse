@@ -17,6 +17,8 @@ more than one applies, all of them apply.
   access standards (Server Components only, Drizzle via `/data` helpers).
 - [docs/data-mutations.md](../docs/data-mutations.md) — Data mutation standards
   (Server Actions only, colocated `actions.ts`, typed params).
+- [docs/server-components.md](../docs/server-components.md) — Server Component
+  standards (`params`/`searchParams` are Promises and must be awaited).
 - [docs/ui.md](../docs/ui.md) — UI and component coding standards.
 
 <!-- docs-list:end -->
